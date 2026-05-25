@@ -1,13 +1,13 @@
 # Stage 1: build Vue frontend
-FROM oven/bun:1 AS frontend-builder
+FROM oven/bun:1.3 AS frontend-builder
 WORKDIR /app/frontend
 COPY frontend/package.json frontend/bun.lock* ./
 RUN bun install --frozen-lockfile
 COPY frontend/ ./
-RUN bun run build
+RUN bunx vite build
 
 # Stage 2: production server
-FROM oven/bun:1
+FROM oven/bun:1.3
 WORKDIR /app
 COPY package.json bun.lock* ./
 RUN bun install --frozen-lockfile --production
