@@ -11,7 +11,7 @@ const {
   preset, customFrom, customTo, intervalMs, paused,
 } = useReadings(3000);
 
-type SensorField = "temperature" | "humidity" | "mq7_co" | "mq2";
+type SensorField = "temperatura" | "humedad" | "mq7_co" | "mq2_gas";
 
 function pts(field: SensorField) {
   return readings.value.map(r => ({ t: r.created_at, v: r[field] as number | null }));
@@ -36,10 +36,10 @@ const lastStr = computed(() =>
 const isLive = computed(() => !paused.value && !error.value);
 
 const kpis = computed(() => [
-  { label: "Temperature", unit: "°C",  color: "#f59e0b", field: "temperature" as SensorField },
-  { label: "Humidity",    unit: "%",   color: "#06b6d4", field: "humidity"    as SensorField },
+  { label: "Temperature", unit: "°C",  color: "#f59e0b", field: "temperatura" as SensorField },
+  { label: "Humidity",    unit: "%",   color: "#06b6d4", field: "humedad"     as SensorField },
   { label: "CO (MQ-7)",  unit: "ppm", color: "#ef4444", field: "mq7_co"      as SensorField },
-  { label: "Gas (MQ-2)", unit: "ppm", color: "#8b5cf6", field: "mq2"         as SensorField },
+  { label: "Gas (MQ-2)", unit: "ppm", color: "#8b5cf6", field: "mq2_gas"     as SensorField },
 ]);
 </script>
 
@@ -104,7 +104,7 @@ const kpis = computed(() => [
           </span>
           <span class="kpi-unit">{{ kpi.unit }}</span>
         </div>
-        <div v-if="kpi.field === 'temperature' && errorPoints.length" class="kpi-err-badge">
+        <div v-if="kpi.field === 'temperatura' && errorPoints.length" class="kpi-err-badge">
           {{ errorPoints.length }} err
         </div>
       </div>
@@ -114,11 +114,11 @@ const kpis = computed(() => [
     <main class="charts-grid">
       <SensorChart
         label="Temperature" unit="°C" color="#f59e0b"
-        :points="pts('temperature')" :errorPoints="errorPoints"
+        :points="pts('temperatura')" :errorPoints="errorPoints"
       />
       <SensorChart
         label="Humidity" unit="%" color="#06b6d4"
-        :points="pts('humidity')"
+        :points="pts('humedad')"
       />
       <SensorChart
         label="CO (MQ-7)" unit="ppm" color="#ef4444"
@@ -126,7 +126,7 @@ const kpis = computed(() => [
       />
       <SensorChart
         label="Gas (MQ-2)" unit="ppm" color="#8b5cf6"
-        :points="pts('mq2')"
+        :points="pts('mq2_gas')"
       />
     </main>
 

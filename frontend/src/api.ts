@@ -1,9 +1,9 @@
 export interface Reading {
   id: number;
-  temperature: number | null;
-  humidity: number | null;
+  temperatura: number | null;
+  humedad: number | null;
   mq7_co: number | null;
-  mq2: number | null;
+  mq2_gas: number | null;
   dht_error: boolean;
   created_at: number;
 }
