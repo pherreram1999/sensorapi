@@ -1,5 +1,8 @@
 import Sparkline from "./Sparkline";
-import { statsForRaw, trendOf, fmtNumber, type Metric } from "../lib/metrics";
+import {
+  statsForRaw, trendOf, fmtNumber, moodFor,
+  NIBBIT_IMG, NIBBIT_LABEL, type Metric,
+} from "../lib/metrics";
 import type { Reading } from "../api";
 
 interface Props {
@@ -15,9 +18,13 @@ export default function KPICard({ metric, data, color, showSpark = true }: Props
   const isFault = data.length > 0 && metric.isFault(data[data.length - 1]);
   const trendUp = trend > 0.0001;
   const trendDown = trend < -0.0001;
+  const mood = moodFor(metric, data);
 
   return (
-    <div className="kpi">
+    <div className={`kpi kpi--${mood}`}>
+      <div className="kpi-mood" title={NIBBIT_LABEL[mood]} aria-hidden>
+        <img src={NIBBIT_IMG[mood]} alt="" />
+      </div>
       <div className="kpi-hd">
         <div className="kpi-dot" style={{ background: color }} />
         <div className="kpi-meta">

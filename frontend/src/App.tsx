@@ -74,8 +74,13 @@ export default function App() {
       <header className="hdr">
         <div className="hdr-l">
           <div className="brand">
-            <span className="brand-mark">●</span>
-            <span className="brand-name">Sensor Console</span>
+            <span className="brand-mark">
+              <img src="/Icon.webp" alt="Nibbit" />
+            </span>
+            <span className="brand-name">
+              <span className="brand-title">Nibbit</span>
+              <span className="brand-sub">Sensor Console</span>
+            </span>
           </div>
           <div className="hdr-sep" />
           <div className="hdr-id">

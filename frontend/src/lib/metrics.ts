@@ -17,7 +17,7 @@ export const METRICS: Metric[] = [
     label: "Temperatura",
     short: "Temp.",
     unit: "°C",
-    color: { dark: "#ff7a59", light: "#e04f2b" },
+    color: { dark: "#f1a26b", light: "#b85518" },
     accessor: (d) => d.temperatura,
     isFault: (d) => d.dht_error === true,
     desc: "Ambiente · DHT",
@@ -27,7 +27,7 @@ export const METRICS: Metric[] = [
     label: "Humedad",
     short: "Hum.",
     unit: "%",
-    color: { dark: "#5dc9f5", light: "#0f8fc4" },
+    color: { dark: "#7fb0c8", light: "#3e6a86" },
     accessor: (d) => d.humedad,
     isFault: (d) => d.dht_error === true,
     desc: "Relativa · DHT",
@@ -37,7 +37,7 @@ export const METRICS: Metric[] = [
     label: "CO",
     short: "CO",
     unit: "",
-    color: { dark: "#f5cf4a", light: "#b88b00" },
+    color: { dark: "#d4a040", light: "#a87617" },
     accessor: (d) => d.mq7_co,
     isFault: () => false,
     desc: "Monóxido · MQ-7",
@@ -47,12 +47,52 @@ export const METRICS: Metric[] = [
     label: "Gas Combustible",
     short: "Gas",
     unit: "",
-    color: { dark: "#b48cff", light: "#6c3fe0" },
+    color: { dark: "#c47080", light: "#8c3838" },
     accessor: (d) => d.mq2_gas,
     isFault: () => false,
     desc: "GLP/Humo · MQ-2",
   },
 ];
+
+/* ─── Nibbit mood ──────────────────────────────────────────────────────────
+   Picks which mascot illustration represents the current state of a metric.
+   - waiting: no data, sensor fault, or non-finite value
+   - sad: temperatura/humedad readings suggesting rainy conditions
+          (humedad > 75% or low temp + elevated humedad)
+   - happy: temperatura/humedad in a comfortable range
+   - tech: MQ-7 / MQ-2 readings (technical/chemical sensors) */
+export type NibbitMood = "happy" | "sad" | "tech" | "waiting";
+
+export const NIBBIT_IMG: Record<NibbitMood, string> = {
+  happy:   "/Nibbit_Happy.webp",
+  sad:     "/Nibbit_Sad.webp",
+  tech:    "/Nibbit_Tecnologias.webp",
+  waiting: "/Nibbit_Waiting.webp",
+};
+
+export const NIBBIT_LABEL: Record<NibbitMood, string> = {
+  happy:   "Condiciones agradables",
+  sad:     "Posible día lluvioso",
+  tech:    "Sensor químico activo",
+  waiting: "Esperando dato válido",
+};
+
+export function moodFor(metric: Metric, data: Reading[]): NibbitMood {
+  if (!data.length) return "waiting";
+  const last = data[data.length - 1];
+  const v = metric.accessor(last);
+  if (metric.isFault(last) || v === null || !Number.isFinite(v)) return "waiting";
+
+  if (metric.key === "temperatura" || metric.key === "humedad") {
+    const t = last.temperatura;
+    const h = last.humedad;
+    const rainy =
+      (h !== null && h > 75) ||
+      (t !== null && t < 18 && h !== null && h > 60);
+    return rainy ? "sad" : "happy";
+  }
+  return "tech";
+}
 
 export function statsForRaw(
   data: Reading[],
