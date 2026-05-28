@@ -1,77 +1,15 @@
 <!doctype html>
-<html lang="en">
+<html lang="es" data-theme="dark" data-density="regular">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sensor Dashboard</title>
+    <title>Sensor Console</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <style>
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-      :root {
-        --c-primary:        #1e40af;
-        --c-primary-light:  #dbeafe;
-        --c-secondary:      #3b82f6;
-        --c-accent:         #d97706;
-        --c-bg:             #f8fafc;
-        --c-surface:        #ffffff;
-        --c-border:         #e2e8f0;
-        --c-text:           #0f172a;
-        --c-text-secondary: #475569;
-        --c-text-muted:     #94a3b8;
-        --c-success:        #16a34a;
-        --c-success-bg:     #dcfce7;
-        --c-warning:        #d97706;
-        --c-warning-bg:     #fef3c7;
-        --c-danger:         #dc2626;
-        --c-danger-bg:      #fee2e2;
-        --c-live:           #22c55e;
-        /* sensor accent colors (hex for chart.js compat) */
-        --c-temp:   #f59e0b;
-        --c-humid:  #06b6d4;
-        --c-co:     #ef4444;
-        --c-gas:    #8b5cf6;
-        /* elevation */
-        --shadow-sm: 0 1px 3px rgba(15,23,42,.08), 0 1px 2px rgba(15,23,42,.04);
-        --shadow-md: 0 4px 8px rgba(15,23,42,.1),  0 2px 4px rgba(15,23,42,.06);
-        /* radius */
-        --r-sm: 6px; --r-md: 12px; --r-lg: 16px;
-        /* 8dp spacing scale */
-        --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px;
-        --sp-5:20px; --sp-6:24px; --sp-8:32px;
-        /* layout */
-        --toolbar-height: 56px;
-      }
-
-      html { scroll-behavior: smooth; }
-
-      body {
-        font-family: 'Fira Sans', system-ui, -apple-system, sans-serif;
-        background: var(--c-bg);
-        color: var(--c-text);
-        font-size: 16px;
-        line-height: 1.5;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-
-      @keyframes pulse-live {
-        0%, 100% { opacity: 1; transform: scale(1); }
-        50%       { opacity: .55; transform: scale(.8); }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after {
-          animation-duration: .01ms !important;
-          transition-duration: .01ms !important;
-        }
-      }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
