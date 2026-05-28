@@ -476,6 +476,29 @@ html[data-theme="light"] .kpi-mood {
 }
 .ftr-v.warn { color: var(--accent-err); }
 
+/* ─── Credits line ─────────────────────────────────────────────────────── */
+.credits {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 6px 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--fg-faint);
+}
+.credits-mark {
+  color: var(--brand);
+  font-size: 8px;
+  line-height: 1;
+}
+.credits-names {
+  color: var(--fg-dim);
+  font-weight: 500;
+}
+
 @media (max-width: 720px) {
   .ftr { grid-template-columns: repeat(2, 1fr); }
   .ftr-cell { border-right: 0; border-bottom: 1px solid var(--border); padding: 8px 14px; }

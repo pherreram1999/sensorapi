@@ -84,8 +84,8 @@ export default function App() {
           </div>
           <div className="hdr-sep" />
           <div className="hdr-id">
-            <span className="hdr-id-l">NODE</span>
-            <span className="hdr-id-v">{sensorId}</span>
+            <span className="hdr-id-l">SOC</span>
+            <span className="hdr-id-v">EQUIPO 11</span>
           </div>
         </div>
         <div className="hdr-r">
@@ -183,6 +183,12 @@ export default function App() {
           <span className="ftr-v">{paused ? "OFF" : `${Math.round(intervalMs / 1000)}s`}</span>
         </div>
       </footer>
+
+      <div className="credits">
+        <span className="credits-mark">●</span>
+        <span>Hecho por</span>
+        <span className="credits-names">Corro Mendoza Onasis Alejandro y Herrera Mauricio Pedro Alonso · Equipo 11</span>
+      </div>
     </div>
   );
 }
