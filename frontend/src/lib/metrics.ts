@@ -1,4 +1,8 @@
 import type { Reading } from "../api";
+import nibbitHappy from "../assets/Nibbit_Happy.webp";
+import nibbitSad from "../assets/Nibbit_Sad.webp";
+import nibbitTech from "../assets/Nibbit_Tecnologias.webp";
+import nibbitWaiting from "../assets/Nibbit_Waiting.webp";
 
 export interface Metric {
   key: keyof Reading;
@@ -64,10 +68,10 @@ export const METRICS: Metric[] = [
 export type NibbitMood = "happy" | "sad" | "tech" | "waiting";
 
 export const NIBBIT_IMG: Record<NibbitMood, string> = {
-  happy:   "/Nibbit_Happy.webp",
-  sad:     "/Nibbit_Sad.webp",
-  tech:    "/Nibbit_Tecnologias.webp",
-  waiting: "/Nibbit_Waiting.webp",
+  happy:   nibbitHappy,
+  sad:     nibbitSad,
+  tech:    nibbitTech,
+  waiting: nibbitWaiting,
 };
 
 export const NIBBIT_LABEL: Record<NibbitMood, string> = {

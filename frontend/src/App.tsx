@@ -8,6 +8,7 @@ import StatusPill from "./components/StatusPill";
 import RangeSelector from "./components/RangeSelector";
 import PollControls from "./components/PollControls";
 import ThemeControls from "./components/ThemeControls";
+import iconUrl from "./assets/Icon.webp";
 
 const PRESET_MS: Record<string, number> = {
   "5m":  5 * 60 * 1000,
@@ -75,7 +76,7 @@ export default function App() {
         <div className="hdr-l">
           <div className="brand">
             <span className="brand-mark">
-              <img src="/Icon.webp" alt="Nibbit" />
+              <img src={iconUrl} alt="Nibbit" />
             </span>
             <span className="brand-name">
               <span className="brand-title">Nibbit</span>
